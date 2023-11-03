@@ -191,7 +191,33 @@ def plot_distribution(degree_distribution):
     plt.show()
         
 def main():
-    # GAD Data Analysis
+    # Part 1: Testing Graph class
+    V = list("ABCDEFGH")
+    E = [('A', 'B'), ('A', 'C'), ('A', 'G'), ('A', 'H'),
+         ('B', 'C'), ('B', 'F'), ('C', 'D'), ('D', 'E'),
+         ('E', 'F'), ('H', 'F')]
+    g = Graph(V, E)
+    print('\nUndirected Graph')
+    print('|V|:', g.num_vertices())
+    print('|E|:', g.num_edges())
+    print('Adjacent to A:', g['A'])
+    print(g)
+
+    # Part 2: Testing WeightedGraph class
+    V = list("ABCDEFGH")
+    E = [('A', 'B', 5), ('A', 'C', 3), ('A', 'G', 2), ('A', 'H', 9),
+         ('B', 'C', 0), ('B', 'F', 3), ('C', 'D', 1),
+         ('D', 'E', 12), ('E', 'F', 16), ('H', 'F', 8)]
+    g = WeightedGraph(V, E)
+    print('\nUndirected Weighted Graph')
+    print('|V|:', g.num_vertices())
+    print('|E|:', g.num_edges())
+    print('Adjacent to A:', g['A'])
+    print(g)
+    subg = g.subgraph(['A', 'B', 'C'])
+    print(subg)
+    
+    # Part 3: Actual Code - GAD Data Analysis
     wg = WeightedGraph()
     wg.from_csv('gad_data.csv')
     degree_distribution = wg.degree_distribution()
